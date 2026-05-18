@@ -1,0 +1,2 @@
+# placeholder — keeps the logs/ directory tracked by git
+# actual *.log files are gitignored
