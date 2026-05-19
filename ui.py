@@ -193,9 +193,9 @@ def build_ui() -> gr.Blocks:
     with gr.Blocks(title="Binance Futures Testnet — Trading Bot") as demo:
         gr.Markdown("# Binance Futures Testnet — Trading Bot UI")
 
-        with gr.TabbedInterface():
-            # Using explicit Tabs to match the spec
-            with gr.Tab("Place Order"):
+        with gr.Tabs():
+            # Place Order tab
+            with gr.TabItem("Place Order"):
                 with gr.Row():
                     symbol_input = gr.Dropdown(
                         choices=DEFAULT_SYMBOLS,
@@ -216,11 +216,11 @@ def build_ui() -> gr.Blocks:
                     qty_input = gr.Number(label="Quantity", value=0.001, precision=6)
                     price_input = gr.Number(label="Price (LIMIT only)", value=None, visible=False)
 
-                # Grid-specific fields
-                with gr.Row(visible=False) as grid_row:
-                    price_low_input = gr.Number(label="Price Low (GRID)", value=None)
-                    price_high_input = gr.Number(label="Price High (GRID)", value=None)
-                    grid_levels_slider = gr.Slider(minimum=2, maximum=20, step=1, value=5, label="Grid Levels")
+                # Grid-specific fields (each individually hideable)
+                with gr.Row():
+                    price_low_input = gr.Number(label="Price Low (GRID)", value=None, visible=False)
+                    price_high_input = gr.Number(label="Price High (GRID)", value=None, visible=False)
+                    grid_levels_slider = gr.Slider(minimum=2, maximum=20, step=1, value=5, label="Grid Levels", visible=False)
 
                 place_btn = gr.Button("Place Order")
 
@@ -228,20 +228,35 @@ def build_ui() -> gr.Blocks:
                     json_out = gr.JSON(label="Response")
                     status_out = gr.Textbox(label="Status", interactive=False)
 
-                # Dynamic visibility handler
+                # Dynamic visibility handler — update the price field and GRID fields
                 def _on_order_type_change(order_type: str):
                     if order_type == "MARKET":
-                        return gr.update(visible=False), gr.update(visible=False)
+                        return (
+                            gr.update(visible=False),  # price_input
+                            gr.update(visible=False),  # price_low_input
+                            gr.update(visible=False),  # price_high_input
+                            gr.update(visible=False),  # grid_levels_slider
+                        )
                     if order_type == "LIMIT":
-                        return gr.update(visible=True), gr.update(visible=False)
+                        return (
+                            gr.update(visible=True),
+                            gr.update(visible=False),
+                            gr.update(visible=False),
+                            gr.update(visible=False),
+                        )
                     # GRID
-                    return gr.update(visible=False), gr.update(visible=True)
+                    return (
+                        gr.update(visible=False),
+                        gr.update(visible=True),
+                        gr.update(visible=True),
+                        gr.update(visible=True),
+                    )
 
-                # Connect order type change to showing/hiding price and grid row
+                # Connect order type change to showing/hiding price and grid fields
                 order_type_input.change(
                     fn=_on_order_type_change,
                     inputs=[order_type_input],
-                    outputs=[price_input, grid_row],
+                    outputs=[price_input, price_low_input, price_high_input, grid_levels_slider],
                 )
 
                 # Connect place button
@@ -276,13 +291,15 @@ def build_ui() -> gr.Blocks:
                     outputs=[json_out, status_out],
                 )
 
-            with gr.Tab("Account Balance"):
+            # Account Balance tab
+            with gr.TabItem("Account Balance"):
                 refresh_btn = gr.Button("Refresh Balance")
                 balance_df = gr.Dataframe(headers=["asset", "balance", "availableBalance"], datatype=["str", "str", "str"], interactive=False)
 
-                refresh_btn.click(fn=refresh_balance_ui, inputs=[], outputs=[balance_df, gr.State()])
+                refresh_btn.click(fn=refresh_balance_ui, inputs=[], outputs=[balance_df])
 
-            with gr.Tab("Order Log"):
+            # Order Log tab
+            with gr.TabItem("Order Log"):
                 load_btn = gr.Button("Load Recent Logs")
                 log_box = gr.Textbox(label="Recent Log Lines", lines=20, interactive=False)
 
