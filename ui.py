@@ -160,27 +160,26 @@ def place_order_ui(
         return None, _format_status(False, f"Unexpected error: {exc}\n{tb}")
 
 
-def refresh_balance_ui() -> tuple[list[list[Any]], list[str]]:
-    """Callback to fetch account balances and return table rows and headers.
+def refresh_balance_ui() -> list[list[Any]]:
+    """Callback to fetch account balances and return table rows.
 
-    Returns (rows, headers) suitable for gr.Dataframe.
+    Returns rows suitable for gr.Dataframe (headers are predefined in UI).
     """
     try:
         client = BinanceClient()
         balances = client.get_account_balance()
 
         # We present a clean table with the most relevant columns
-        headers = ["asset", "balance", "availableBalance"]
         rows = [
             [b.get("asset", ""), b.get("balance", ""), b.get("availableBalance", "")]
             for b in balances
         ]
-        return rows, headers
+        return rows
 
     except Exception as exc:
         logger.exception("Failed to fetch balances: %s", exc)
         # Return a single-row table with the error message
-        return [["ERROR", str(exc), ""]], ["asset", "balance", "availableBalance"]
+        return [["ERROR", str(exc), ""]]
 
 
 def load_order_log_ui() -> str:
