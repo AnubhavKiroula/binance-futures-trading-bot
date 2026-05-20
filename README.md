@@ -106,7 +106,32 @@ The UI has three tabs:
 
 ---
 
-## 5. Project Structure
+## 5. Screenshots
+
+### CLI — Market BUY Order (BTCUSDT)
+![Market BUY](screenshots/s1.png)
+
+### CLI — Limit BUY Order (ETHUSDT)
+![Limit BUY](screenshots/s5.png)
+
+### CLI — Limit SELL Order (ETHUSDT)
+![Limit SELL](screenshots/s6.png)
+
+### CLI — Account Balance
+![Account Balance CLI](screenshots/s2.png)
+
+### Gradio UI — Place Order
+![Gradio Place Order](screenshots/s3.png)
+
+### Gradio UI — Account Balance
+![Gradio Balance](screenshots/s7.png)
+
+### Gradio UI — Order Log
+![Gradio Logs](screenshots/s4.png)
+
+---
+
+## 6. Project Structure
 
 ```
 binance-futures-trading-bot/
@@ -127,6 +152,15 @@ binance-futures-trading-bot/
 │   ├── market_order_sample.log ← Sample MARKET order log
 │   └── limit_order_sample.log  ← Sample LIMIT order log
 │
+├── screenshots/                ← Screenshots for README documentation
+│   ├── s1.png                  ← CLI: Market BUY order on BTCUSDT
+│   ├── s2.png                  ← CLI: Account Balance (terminal view)
+│   ├── s3.png                  ← Gradio UI: Place Order tab
+│   ├── s4.png                  ← Gradio UI: Order Log tab
+│   ├── s5.png                  ← CLI: Limit BUY order on ETHUSDT
+│   ├── s6.png                  ← CLI: Limit SELL order on ETHUSDT
+│   └── s7.png                  ← Gradio UI: Account Balance tab
+│
 ├── .env.example                ← Credential template (safe to commit)
 ├── .env                        ← Your actual credentials (gitignored)
 ├── .gitignore
@@ -136,7 +170,7 @@ binance-futures-trading-bot/
 
 ---
 
-## 6. Assumptions & Notes
+## 7. Assumptions & Notes
 
 - **Testnet only** — the bot targets `https://testnet.binancefuture.com`.
   Do **not** use production API keys; the testnet URL rejects them.
@@ -160,7 +194,7 @@ binance-futures-trading-bot/
 
 ---
 
-## 7. Log File Locations
+## 8. Log File Locations
 
 | File | Description |
 |------|-------------|
