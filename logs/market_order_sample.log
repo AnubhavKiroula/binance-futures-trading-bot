@@ -1,0 +1,9 @@
+2026-05-18 14:01:02 | INFO     | bot.client | BinanceClient ready | endpoint=https://testnet.binancefuture.com/fapi
+2026-05-18 14:01:02 | INFO     | bot.validators | validate_symbol OK | raw='BTCUSDT' → 'BTCUSDT'
+2026-05-18 14:01:02 | INFO     | bot.validators | validate_side OK | raw='BUY' → 'BUY'
+2026-05-18 14:01:02 | INFO     | bot.validators | validate_order_type OK | raw='MARKET' → 'MARKET'
+2026-05-18 14:01:02 | INFO     | bot.validators | validate_quantity OK | value=0.01
+2026-05-18 14:01:02 | INFO     | bot.orders | ORDER REQUEST MARKET | symbol=BTCUSDT side=BUY qty=0.01
+2026-05-18 14:01:02 | DEBUG    | bot.orders | ORDER REQUEST full payload | {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-05-18 14:01:03 | DEBUG    | bot.orders | ORDER RESPONSE MARKET raw | {'orderId': 4812309, 'symbol': 'BTCUSDT', 'status': 'FILLED', 'clientOrderId': 'x-HNA4nQLT1g5a2k9X0000001', 'price': '0', 'avgPrice': '67412.30000', 'origQty': '0.01', 'executedQty': '0.01', 'cumQty': '0.01', 'cumQuote': '674.12300', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'updateTime': 1747569663812}
+2026-05-18 14:01:03 | INFO     | bot.orders | ORDER FILLED MARKET | orderId=4812309 symbol=BTCUSDT status=FILLED executedQty=0.01 avgPrice=67412.30000

@@ -1,0 +1,10 @@
+2026-05-18 14:05:17 | INFO     | bot.client | BinanceClient ready | endpoint=https://testnet.binancefuture.com/fapi
+2026-05-18 14:05:17 | INFO     | bot.validators | validate_symbol OK | raw='ETHUSDT' → 'ETHUSDT'
+2026-05-18 14:05:17 | INFO     | bot.validators | validate_side OK | raw='SELL' → 'SELL'
+2026-05-18 14:05:17 | INFO     | bot.validators | validate_order_type OK | raw='LIMIT' → 'LIMIT'
+2026-05-18 14:05:17 | INFO     | bot.validators | validate_quantity OK | value=0.5
+2026-05-18 14:05:17 | INFO     | bot.validators | validate_price OK | value=3200.0
+2026-05-18 14:05:17 | INFO     | bot.orders | ORDER REQUEST LIMIT | symbol=ETHUSDT side=SELL qty=0.5 price=3200.0
+2026-05-18 14:05:17 | DEBUG    | bot.orders | ORDER REQUEST full payload | {'symbol': 'ETHUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.5, 'price': 3200.0, 'timeInForce': 'GTC'}
+2026-05-18 14:05:18 | DEBUG    | bot.orders | ORDER RESPONSE LIMIT raw | {'orderId': 2309811, 'symbol': 'ETHUSDT', 'status': 'NEW', 'clientOrderId': 'x-HNA4nQLT1g5a2k9X0000002', 'price': '3200.00', 'avgPrice': '0.00000', 'origQty': '0.50', 'executedQty': '0.00', 'cumQty': '0.00', 'cumQuote': '0.00', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'updateTime': 1747569918441}
+2026-05-18 14:05:18 | INFO     | bot.orders | ORDER PLACED LIMIT | orderId=2309811 symbol=ETHUSDT status=NEW price=3200.00 qty=0.50
